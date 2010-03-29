@@ -1,0 +1,6 @@
+<form action="/task/<%= @task.id %>" method="post">
+<input name="_method" type="hidden" value="put" />
+<input type="text" name="name" id="name" value="<%= @task.name %>">
+<input id="completed" name="completed" type="checkbox" value="done" <%= @task.completed_at ? "checked" : "" %>/>
+<input id="task_submit" name="commit" type="submit" value="Update" />
+</form>
