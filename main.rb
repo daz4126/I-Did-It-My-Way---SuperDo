@@ -45,7 +45,7 @@ end
 put '/task/:id' do
   task = Task.get(params[:id])
   task.completed_at = params[:completed] ?  Time.now : nil
-  if @task.save
+  if task.save
     status 201
     redirect "/task/"+task.id
   else
