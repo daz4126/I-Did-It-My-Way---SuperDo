@@ -4,3 +4,5 @@
 <input id="completed" name="completed" type="checkbox" value="done" <%= @task.completed_at ? "checked" : "" %>/>
 <input id="task_submit" name="commit" type="submit" value="Update" />
 </form>
+
+<a href="task/<%= @task.id %>/delete" ">Delete this task</a>

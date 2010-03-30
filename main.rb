@@ -47,11 +47,17 @@ put '/task/:id' do
   task.completed_at = params[:completed] ?  Time.now : nil
   if task.save
     status 201
-    redirect "/task/"+task.id
+    redirect "/task/"+task.id.to_s
   else
     status 412
     redirect '/tasks'   
   end
+end
+
+# delete confirmation
+get '/task/:id/delete' do
+  @task = Task.get(params[:id])
+  erb :confirm_delete
 end
 
 # View a task
