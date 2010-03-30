@@ -13,14 +13,9 @@ class Task
 end
 
 # list all tasks
-get '/tasks' do
+get '/' do
   @tasks = Task.all
   erb :index
-end
-
-# new task
-get '/task/new' do
-  erb :new
 end
 
 # create new task   
@@ -28,15 +23,15 @@ post '/task/create' do
   task = Task.new(:name => params[:name])
   if task.save
     status 201
-    redirect '/task/'+task.id.to_s  
+    redirect '/'  
   else
     status 412
-    redirect '/tasks'   
+    redirect '/'   
   end
 end
 
 # edit task
-get '/task/:id/edit' do
+get '/task/:id' do
   @task = Task.get(params[:id])
   erb :edit
 end
@@ -48,10 +43,10 @@ put '/task/:id' do
   task.name = (params[:name])
   if task.save
     status 201
-    redirect '/task/'+task.id.to_s
+    redirect '/'
   else
     status 412
-    redirect '/tasks'   
+    redirect '/'   
   end
 end
 
@@ -64,13 +59,7 @@ end
 # delete task
 delete '/task/:id' do
   Task.get(params[:id]).destroy
-  redirect '/tasks'  
-end
-
-# View a task
-get '/task/:id' do
-  @task = Task.get(params[:id])
-  erb :task
+  redirect '/'  
 end
 
 DataMapper.auto_upgrade!
