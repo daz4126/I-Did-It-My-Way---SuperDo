@@ -67,7 +67,7 @@ end
 # delete confirmation
 get '/task/:id/delete' do
   @task = Task.get(params[:id])
-  erb :confirm_delete
+  erb :delete
 end
 
 # delete task
